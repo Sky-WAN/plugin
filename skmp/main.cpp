@@ -1,15 +1,16 @@
 #include "skse64/PluginAPI.h"		// super
 #include "skse64_common/skse_version.h"	// What version of SKSE is running?
 #include <shlobj.h>				// CSIDL_MYCODUMENTS
-#include "SKMP.h"
+//#include "SKMP.h"
 
 static PluginHandle					g_pluginHandle = kPluginHandle_Invalid;
 static SKSEPapyrusInterface         * g_papyrus = NULL;
+static SKSEMessagingInterface		* g_messaging = NULL;
 
 extern "C"	{
 
 	bool SKSEPlugin_Query(const SKSEInterface * skse, PluginInfo * info)	{	// Called by SKSE to learn about this plugin and check that it's safe to load it
-		gLog.OpenRelative(CSIDL_MYDOCUMENTS, "\\My Games\\Skyrim\\SKMP\\debug.log");
+		gLog.OpenRelative(CSIDL_MYDOCUMENTS, "\\My Games\\Skyrim Special Edition\\SKMP\\debug.log");
 		gLog.SetPrintLevel(IDebugLog::kLevel_Error);
 		gLog.SetLogLevel(IDebugLog::kLevel_DebugMessage);
 
@@ -47,13 +48,16 @@ extern "C"	{
 		_MESSAGE("SKSEPlugin_Load");
 
 		g_papyrus = (SKSEPapyrusInterface *)skse->QueryInterface(kInterface_Papyrus);
+		g_messaging = (SKSEMessagingInterface *)skse->QueryInterface(kInterface_Messaging);
 
 		//Check if the function registration was a success...
-		bool btest = g_papyrus->Register(SKMP::RegisterFuncs);
 
-		if (btest) {
-			_MESSAGE("Register Succeeded");
-		}
+		//bool gtest = g_messaging->RegisterListener(g_pluginHandle, "SKSE", SKMP::HandleSKSEMessage);
+		//bool btest = g_papyrus->Register(SKMP::RegisterFuncs);
+
+		//if (btest) {
+		//	_MESSAGE("Register Succeeded");
+		//}
 
 		return true;
 	}

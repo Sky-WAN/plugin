@@ -858,11 +858,11 @@
     <Filter Include="papyrus\vm">
       <UniqueIdentifier>{41151838-834c-453d-b20b-de6e8ef8ee64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="internal">
-      <UniqueIdentifier>{2ce64f3f-f75e-4c8d-a833-a0f7e9dc9de7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="scaleform">
       <UniqueIdentifier>{b33ba6c7-8944-4c2a-9f73-aaa4950fc6ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="internal">
+      <UniqueIdentifier>{2ce64f3f-f75e-4c8d-a833-a0f7e9dc9de7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
