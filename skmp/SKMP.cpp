@@ -12,7 +12,7 @@
 #include "skse64/PluginAPI.h"
 #include "skse64/GameData.h"
 
-//#include "Client.h"
+#include "Client.h"
 
 #include <vector>
 #include <map>
@@ -31,6 +31,7 @@ namespace SKMP {
 		if (msg->type == SKSEMessagingInterface::kMessage_PostLoadGame) {
 			bool gameLoaded = &msg->data;
 			if (gameLoaded) {
+				// ends up running twice for some reason
 				_MESSAGE("Game successfully loaded");
 			}
 			else {

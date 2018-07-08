@@ -76,14 +76,16 @@
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" /Y
-copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y</Command>
+if %appveyor% NEQ "True" (
+copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\common;$(SolutionDir);$(SolutionDir)\..;$(ProjectDir)\..\skse64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PLUGIN_EXAMPLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -103,7 +105,9 @@ copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Speci
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" /Y
-copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y</Command>
+if %appveyor% NEQ "True" (
+copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -115,6 +119,7 @@ copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Speci
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SKMP.cpp" />
   </ItemGroup>
@@ -122,6 +127,7 @@ copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Speci
     <None Include="exports.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="SKMP.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
