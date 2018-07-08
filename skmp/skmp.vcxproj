@@ -74,6 +74,10 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" /Y
+copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -97,6 +101,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalDependencies>skse.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" /Y
+copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\skse\plugins\$(TargetFileName)" /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\skse64\skse64\skse64.vcxproj">
